@@ -13,6 +13,7 @@
             {
                 optionsBuilder.UseSqlServer("Data Source=.;Database=Cats_MVC;Integrated Security=True");
             }
+
             base.OnConfiguring(optionsBuilder);
         }
     }
