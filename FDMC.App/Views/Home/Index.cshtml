@@ -1,5 +1,14 @@
-﻿@{ 
+﻿@using FDMC.Models
+
+@model IEnumerable<Cat>
+@{ 
     ViewData["Title"] = "Home";
 }
 
-Welcome to FDMC!
+<h1>Fluffy Duffy Munchkin Cats</h1>
+<ul>
+    @foreach (var cat in Model)
+    {
+        <li><a asp-controller="Cata" asp-action="Details" asp-route-id="@cat.Id">@cat.Name</a></li>
+    }
+</ul>
