@@ -1,5 +1,6 @@
 ﻿namespace FDMC.App.Controllers
 {
+    using FDMC.App.Models.BindingModels;
     using FDMC.Data;
     using FDMC.Models;
     using Microsoft.AspNetCore.Mvc;
@@ -16,12 +17,20 @@
         public IActionResult Details(int id)
         {
             var cat = this.Context.Cats.Find(id);
+
             if (cat == null)
             {
                 return NotFound();
             }
 
-            return View(cat);
+            var catModel = new CatCreatingBindingModel()
+            {
+                Name = cat.Name,
+                Age = cat.Age,
+                Breed = cat.Breed,
+                ImageUrl = cat.ImageUrl
+            };
+            return View(catModel);
         }
 
         [HttpGet]
