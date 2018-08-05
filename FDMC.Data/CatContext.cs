@@ -11,8 +11,8 @@
         {
             if (!optionsBuilder.IsConfigured)
             {
-                //optionsBuilder.UseSqlServer("Data Source=.;Database=Cats_MVC;Integrated Security=True");
-                optionsBuilder.UseSqlServer("Data Source=MS-PC\\SQLEXPRESS;Database=Cats_MVC;Integrated Security=True");
+                optionsBuilder.UseSqlServer("Data Source=.;Database=Cats_MVC;Integrated Security=True");
+                //optionsBuilder.UseSqlServer("Data Source=MS-PC\\SQLEXPRESS;Database=Cats_MVC;Integrated Security=True");
             }
 
             base.OnConfiguring(optionsBuilder);

@@ -1,6 +1,7 @@
 ﻿namespace FDMC.App.Controllers
 {
     using FDMC.App.Models.BindingModels;
+    using FDMC.App.Models.ViewModels;
     using FDMC.Data;
     using FDMC.Models;
     using Microsoft.AspNetCore.Mvc;
@@ -23,13 +24,14 @@
                 return NotFound();
             }
 
-            var catModel = new CatCreatingBindingModel()
+            var catModel = new CatDetailsViewModel()
             {
                 Name = cat.Name,
                 Age = cat.Age,
                 Breed = cat.Breed,
                 ImageUrl = cat.ImageUrl
             };
+
             return View(catModel);
         }
 
@@ -40,12 +42,19 @@
         }
 
         [HttpPost]
-        public IActionResult Add(Cat model)
+        public IActionResult Add(CatCreatingBindingModel model)
         {
-            this.Context.Cats.Add(model);
+            var cat = new Cat()
+            {
+                Name = model.Name,
+                Age = model.Age,
+                Breed = model.Breed,
+                ImageUrl = model.ImageUrl
+            };
+            this.Context.Cats.Add(cat);
             this.Context.SaveChanges();
 
-            return RedirectToAction("Details", new { id = model.Id });
+            return RedirectToAction("Details", new { id = cat.Id });
         }
     }
 }
